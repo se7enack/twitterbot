@@ -12,12 +12,12 @@ numberOfTweets = 365250
 
 for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
     try:
-        print('Retweeted {0}'.format(tweet.retweet_count))
-        if tweet.retweet_count > 1:
+        print('Retweeted count: {0}'.format(tweet.retweet_count))
+        if tweet.retweet_count < 1:
             tweet.retweet()
+            print("https://twitter.com/" + str(tweet.id) + "/status/" + str(tweet.id))
             time.sleep(87)
             # tweet.favorite()
             # print('Tweet Liked')
     except tweepy.TweepError as e:
         print(e)
-        
