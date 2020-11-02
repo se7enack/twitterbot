@@ -8,14 +8,16 @@ auth.set_access_token('Access_token','Access_token_secret')
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 user = api.me()
 search = "Python"
-numberOfTweets = 11
+numberOfTweets = 365250
 
 for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
     try:
-        tweet.favorite()
-        time.sleep(900)
-        print('Tweet Liked')
+        print('Retweeted {0}'.format(tweet.retweet_count))
+        if tweet.retweet_count > 1:
+            tweet.retweet()
+            time.sleep(87)
+            # tweet.favorite()
+            # print('Tweet Liked')
     except tweepy.TweepError as e:
-        print(e.reason)
-    except StopIteration:
-        break
+        print(e)
+        
