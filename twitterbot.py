@@ -24,8 +24,8 @@ def retweet(hashtag):
         try:
             print('Retweeted count: {0}'.format(tweet.retweet_count))
             if 1 <= tweet.retweet_count <= 3:
-                tweet.retweet()
                 tweet.favorite()
+                tweet.retweet()
                 now = datetime.now()
                 print(now)
                 print("https://twitter.com/" + str(tweet.id) + "/status/" + str(tweet.id))
@@ -66,7 +66,7 @@ def menu():
     print(30 * '-')
     print("     T W I T T E R B O T   ")
     print(30 * '-')
-    print("1. Retweet Hashtag")
+    print("1. Like and retweet a Hashtag")
     print("2. Follow users who follow you")
     print("3. Unfollow users who don't follow you anymore")
     print("4. Unfollow them all!")
@@ -89,4 +89,4 @@ def menu():
 
 
 menu()
-  
+   
