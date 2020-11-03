@@ -87,6 +87,7 @@ def menu():
     print(60 * '-')
     print("                   # T W I T T E R B O T                    ")
     print(60 * '-')
+    print("0. > Reply to tweets <")
     print("1. > Like and retweet posts with a certain Hashtag <")
     print("2. > Follow users who follow you <")
     print("3. > Unfollow users who no longer follow you <")
@@ -94,13 +95,17 @@ def menu():
     print("5. > Delete all of your posts! <")
     print(60 * '-')
 
-    choice = input('Enter your choice [1-5] : ')
+    choice = input('Enter your choice [0-5] : ')
     try:
         choice = int(choice)
     except:
         menu()
 
-    if choice == 1:
+    if choice == 0:
+        search = input("What do you want to search for?: ")
+        reply = input("What should your reply be?: ")
+        talk(search, reply)
+    elif choice == 1:
         search = input("Please enter hashtag: #")
         retweet(search)
     elif choice == 2:
@@ -125,6 +130,22 @@ def nag():
                    \/  \/  \_| |_/ \_| \_| \_| \_/  \___/  \_| \_/  \____/ (_)
  """)
 
+
+def talk(search, reply):
+    twt = api.search(q=search)
+
+    t = [search.upper(),
+         search.lower(),
+         search.capitalize(),
+         search.title()]
+
+    for s in twt:
+        for i in t:
+            if i == s.text:
+                sn = s.user.screen_name
+                m = "@%s" % sn + reply
+                s = api.update_status(m, s.id)
+                print("tweeted" + sn)
 
 
 menu()
