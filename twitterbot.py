@@ -90,7 +90,7 @@ def menu():
     print("1. > Like and retweet posts with a certain Hashtag <")
     print("2. > Follow users who follow you <")
     print("3. > Unfollow users who don't follow you anymore <")
-    print("4. > Unfollow all of your follower! <")
+    print("4. > Unfollow all of your followers! <")
     print("5. > Delete all of your posts! <")
     print(30 * '-')
 
