@@ -52,24 +52,41 @@ def unfollow():
         else:
             print("Keeping {0}".format(api.get_user(friend).screen_name))
 
-print(30 * '-')
-print("     T W I T T E R B O T   ")
-print(30 * '-')
-print("1. Retweet Hashtag")
-print("2. Follow users who follow you")
-print("3. Unfollow users who don't follow you anymore")
-print(30 * '-')
 
-choice = input('Enter your choice [1-3] : ')
-choice = int(choice)
+def unfollowall():
+    # Unfollow people that don't follow you
+    followers = api.followers_ids(twitter_handle)
+    friends = api.friends_ids(twitter_handle)
+    for friend in friends:
+        print("Unfollowing {0}".format(api.get_user(friend).screen_name))
+        api.destroy_friendship(friend)
 
-if choice == 1:
-    search = input("Please enter hashtag: #")
-    retweet(search)
-elif choice == 2:
-    follow()
-elif choice == 3:
-    unfollow()
-else:
-    pass
-   
+
+def menu():
+    print(30 * '-')
+    print("     T W I T T E R B O T   ")
+    print(30 * '-')
+    print("1. Retweet Hashtag")
+    print("2. Follow users who follow you")
+    print("3. Unfollow users who don't follow you anymore")
+    print("4. Unfollow them all!")
+    print(30 * '-')
+
+    choice = input('Enter your choice [1-4] : ')
+    choice = int(choice)
+
+    if choice == 1:
+        search = input("Please enter hashtag: #")
+        retweet(search)
+    elif choice == 2:
+        follow()
+    elif choice == 3:
+        unfollow()
+    elif choice == 4:
+        unfollowall()
+    else:
+        pass
+
+
+menu()
+  
