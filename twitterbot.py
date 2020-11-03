@@ -27,6 +27,8 @@ for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
             now = datetime.now()
             print(now)
             print("https://twitter.com/" + str(tweet.id) + "/status/" + str(tweet.id))
-            time.sleep(87)
+            time.sleep(90)
     except tweepy.TweepError as e:
         print(e)
+
+        
