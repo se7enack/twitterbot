@@ -3,11 +3,17 @@
 import tweepy
 import time
 from datetime import datetime
+from apikeys import apikeys
 
-# https://developer.twitter.com/en/apps
-auth = tweepy.OAuthHandler('API_key','API_secret_key')
-auth.set_access_token('Access_token','Access_token_secret')
+api_key = apikeys['api_key']
+api_secret_key = apikeys['api_secret_key']
+access_token = apikeys['access_token']
+access_token_secret = apikeys['access_token_secret']
 
+auth = tweepy.OAuthHandler(api_key,api_secret_key)
+auth.set_access_token(access_token,access_token_secret)
+
+api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 user = api.me()
 search = input("Please enter hashtag string: ")
 numberOfTweets = 365250
@@ -15,14 +21,12 @@ numberOfTweets = 365250
 for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
     try:
         print('Retweeted count: {0}'.format(tweet.retweet_count))
-        if 5 <= tweet.retweet_count <= 10:
+        if 1 <= tweet.retweet_count <= 3:
             tweet.retweet()
-            #tweet.favorite()
+            tweet.favorite()
             now = datetime.now()
             print(now)
             print("https://twitter.com/" + str(tweet.id) + "/status/" + str(tweet.id))
             time.sleep(87)
     except tweepy.TweepError as e:
         print(e)
-        
-        
