@@ -95,7 +95,10 @@ def menu():
     print(30 * '-')
 
     choice = input('Enter your choice [1-5] : ')
-    choice = int(choice)
+    try:
+        choice = int(choice)
+    except:
+        menu()
 
     if choice == 1:
         search = input("Please enter hashtag: #")
@@ -109,7 +112,7 @@ def menu():
     elif choice == 5:
         deleteallposts()
     else:
-        pass
+        menu()
 
 
 def nag():
