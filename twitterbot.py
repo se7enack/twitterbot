@@ -134,18 +134,23 @@ def nag():
 def talk(search, reply):
     twt = api.search(q=search)
 
-    t = [search.upper(),
+    t = [search,
+         search.upper(),
          search.lower(),
          search.capitalize(),
          search.title()]
 
     for s in twt:
         for i in t:
-            if i == s.text:
+            if i in s.text:
                 sn = s.user.screen_name
-                m = "@%s" % sn + reply
+                m = "@%s" % sn + " " + reply
                 s = api.update_status(m, s.id)
-                print("tweeted" + sn)
+                print("tweeted @%s" % sn)
+                time.sleep(5)
+            else:
+                print("\"" + i + "\" \"" + s.text + "\"\n")
+                time.sleep(1)
 
 
 menu()
