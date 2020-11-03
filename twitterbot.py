@@ -43,23 +43,44 @@ def follow():
 
 def unfollow():
     # Unfollow people that don't follow you
-    followers = api.followers_ids(twitter_handle)
-    friends = api.friends_ids(twitter_handle)
-    for friend in friends:
-        if friend not in followers:
-            print("Unfollowing {0}".format(api.get_user(friend).screen_name))
-            api.destroy_friendship(friend)
-        else:
-            print("Keeping {0}".format(api.get_user(friend).screen_name))
+    nag()
+    print("You are about to unfollow people that don't follow the account @%s." % api.verify_credentials().screen_name)
+    print("Type 'yes' to confirm")
+    unfollowthem = input(": ")
+    if unfollowthem.lower() == 'yes':
+        followers = api.followers_ids(twitter_handle)
+        friends = api.friends_ids(twitter_handle)
+        for friend in friends:
+            if friend not in followers:
+                print("Unfollowing {0}".format(api.get_user(friend).screen_name))
+                api.destroy_friendship(friend)
+            else:
+                print("Keeping {0}".format(api.get_user(friend).screen_name))
 
 
 def unfollowall():
     # Unfollow people that don't follow you
-    followers = api.followers_ids(twitter_handle)
-    friends = api.friends_ids(twitter_handle)
-    for friend in friends:
-        print("Unfollowing {0}".format(api.get_user(friend).screen_name))
-        api.destroy_friendship(friend)
+    nag()
+    print("You are about to unfollow everyone for the account @%s." % api.verify_credentials().screen_name)
+    print("Type 'yes' to confirm")
+    unfollowthemall = input(": ")
+    if unfollowthemall.lower() == 'yes':
+        friends = api.friends_ids(twitter_handle)
+        for friend in friends:
+            print("Unfollowing {0}".format(api.get_user(friend).screen_name))
+            api.destroy_friendship(friend)
+
+
+def deleteallposts():
+    # Delete all posts
+    nag()
+    print("You are about to delete all tweets for the account @%s." % api.verify_credentials().screen_name)
+    print("Type 'yes' to confirm")
+    deletethemall = input(": ")
+    if deletethemall.lower() == 'yes':
+        for status in tweepy.Cursor(api.user_timeline).items():
+            api.destroy_status(status.id)
+            print("Deleted:", status.id)
 
 
 def menu():
@@ -69,10 +90,11 @@ def menu():
     print("1. > Like and retweet posts with a certain Hashtag <")
     print("2. > Follow users who follow you <")
     print("3. > Unfollow users who don't follow you anymore <")
-    print("4. > Unfollow them all! <")
+    print("4. > Unfollow all of your follower! <")
+    print("5. > Delete all of your posts! <")
     print(30 * '-')
 
-    choice = input('Enter your choice [1-4] : ')
+    choice = input('Enter your choice [1-5] : ')
     choice = int(choice)
 
     if choice == 1:
@@ -84,8 +106,22 @@ def menu():
         unfollow()
     elif choice == 4:
         unfollowall()
+    elif choice == 5:
+        deleteallposts()
     else:
         pass
+
+
+def nag():
+    print("""\
+                   _    _    ___   ______   _   _   _____   _   _   _____   _
+                  | |  | |  / _ \  | ___ \ | \ | | |_   _| | \ | | |  __ \ | |
+                  | |  | | / /_\ \ | |_/ / |  \| |   | |   |  \| | | |  \/ | |
+                  | |/\| | |  _  | |    /  | . ` |   | |   | . ` | | | __  | |
+                  \  /\  / | | | | | |\ \  | |\  |  _| |_  | |\  | | |_\ \ |_|
+                   \/  \/  \_| |_/ \_| \_| \_| \_/  \___/  \_| \_/  \____/ (_)
+ """)
+
 
 
 menu()
