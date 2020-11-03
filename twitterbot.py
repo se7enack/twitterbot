@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import tweepy
 import time
 from datetime import datetime
