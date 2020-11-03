@@ -13,8 +13,7 @@ numberOfTweets = 365250
 for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
     try:
         print('Retweeted count: {0}'.format(tweet.retweet_count))
-        #if api.verify_credentials() == False:
-        if 1 <= tweet.retweet_count <= 5:
+        if 5 <= tweet.retweet_count <= 10:
             tweet.retweet()
             #tweet.favorite()
             now = datetime.now()
@@ -23,3 +22,5 @@ for tweet in tweepy.Cursor(api.search, search).items(numberOfTweets):
             time.sleep(87)
     except tweepy.TweepError as e:
         print(e)
+        
+        
