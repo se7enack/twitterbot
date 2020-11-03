@@ -84,15 +84,15 @@ def deleteallposts():
 
 
 def menu():
-    print(30 * '-')
-    print("     T W I T T E R B O T   ")
-    print(30 * '-')
+    print(60 * '-')
+    print("                   # T W I T T E R B O T                    ")
+    print(60 * '-')
     print("1. > Like and retweet posts with a certain Hashtag <")
     print("2. > Follow users who follow you <")
     print("3. > Unfollow users who don't follow you anymore <")
-    print("4. > Unfollow all of your followers! <")
+    print("4. > Unfollow all of your follower! <")
     print("5. > Delete all of your posts! <")
-    print(30 * '-')
+    print(60 * '-')
 
     choice = input('Enter your choice [1-5] : ')
     try:
