@@ -1,6 +1,7 @@
 # twitterbot
 
-**ABOUT**
+**ABOUT:**
+
 Twitterbot is a Python3 application that controls a Twitter account via the Twitter's public API. This bot can perform autonomous tasks such as tweeting, re-tweeting, liking, following, and unfollowing.
 
 **INSTALL:**
