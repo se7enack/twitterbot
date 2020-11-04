@@ -20,5 +20,5 @@
 
 **OUTPUT:**
 
-![Alt text](https://github.com/se7enack/twitterbot/blob/main/!screencapture!.png?raw=true?raw=true "twitterbot")
+![Alt text](https://github.com/se7enack/twitterbot/blob/main/!screencapture.png?raw=true?raw=true "twitterbot")
 
