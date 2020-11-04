@@ -58,6 +58,14 @@ def unfollow():
                 print("Keeping {0}".format(api.get_user(friend).screen_name))
 
 
+def showfollowers():
+    # Show people who follow you
+    print(api.friends_ids(twitter_handle))
+    friends = api.friends_ids(twitter_handle)
+    for friend in friends:
+        print("{0}".format(api.get_user(friend).screen_name))
+
+
 def unfollowall():
     # Unfollow people that don't follow you
     nag()
@@ -90,12 +98,13 @@ def menu():
     print("0. > Reply to tweets <")
     print("1. > Like and retweet posts with a certain Hashtag <")
     print("2. > Follow users who follow you <")
-    print("3. > Unfollow users who no longer follow you <")
-    print("4. > Unfollow all of your followers! <")
-    print("5. > Delete all of your posts! <")
+    print("3. > Show your followers <")
+    print("4. > Unfollow users who no longer follow you <")
+    print("5. > Unfollow all of your followers! <")
+    print("6. > Delete all of your posts! <")
     print(60 * '-')
 
-    choice = input('Enter your choice [0-5] : ')
+    choice = input('Enter your choice [0-6] : ')
     try:
         choice = int(choice)
     except:
@@ -111,24 +120,15 @@ def menu():
     elif choice == 2:
         follow()
     elif choice == 3:
-        unfollow()
+        showfollowers()
     elif choice == 4:
-        unfollowall()
+        unfollow()
     elif choice == 5:
+        unfollowall()
+    elif choice == 6:
         deleteallposts()
     else:
         menu()
-
-
-def nag():
-    print("""\
-                   _    _    ___   ______   _   _   _____   _   _   _____   _
-                  | |  | |  / _ \  | ___ \ | \ | | |_   _| | \ | | |  __ \ | |
-                  | |  | | / /_\ \ | |_/ / |  \| |   | |   |  \| | | |  \/ | |
-                  | |/\| | |  _  | |    /  | . ` |   | |   | . ` | | | __  | |
-                  \  /\  / | | | | | |\ \  | |\  |  _| |_  | |\  | | |_\ \ |_|
-                   \/  \/  \_| |_/ \_| \_| \_| \_/  \___/  \_| \_/  \____/ (_)
- """)
 
 
 def talk(search, reply):
@@ -153,5 +153,16 @@ def talk(search, reply):
                 time.sleep(1)
 
 
+def nag():
+    print("""\
+                   _    _    ___   ______   _   _   _____   _   _   _____   _
+                  | |  | |  / _ \  | ___ \ | \ | | |_   _| | \ | | |  __ \ | |
+                  | |  | | / /_\ \ | |_/ / |  \| |   | |   |  \| | | |  \/ | |
+                  | |/\| | |  _  | |    /  | . ` |   | |   | . ` | | | __  | |
+                  \  /\  / | | | | | |\ \  | |\  |  _| |_  | |\  | | |_\ \ |_|
+                   \/  \/  \_| |_/ \_| \_| \_| \_/  \___/  \_| \_/  \____/ (_)
+ """)
+
+
 menu()
-   
+    
