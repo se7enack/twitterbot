@@ -22,5 +22,7 @@ Twitterbot is a Python3 application that controls a Twitter account via the Twit
 
 **OUTPUT:**
 
-![Alt text](https://github.com/se7enack/twitterbot/blob/main/!screencapture.png?raw=true?raw=true "twitterbot")
+![Alt text](https://github.com/se7enack/twitterbot/blob/main/!screencapture.png?raw=true "twitterbot")
 
+
+![Alt text](https://counter3.stat.ovh/private/freecounterstat.php?c=d81el8l3cr2keca5th7fa8epdrrbnu3y "counter")
