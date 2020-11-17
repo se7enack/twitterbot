@@ -19,8 +19,7 @@ user = api.me()
 
 def retweet(hashtag):
     # Like and retweet tweets with a certain hashtag
-    numberoftweets = 365250
-    for tweet in tweepy.Cursor(api.search, hashtag).items(numberoftweets):
+    for tweet in tweepy.Cursor(api.search, hashtag).items(5):
         try:
             print('Retweeted count: {0}'.format(tweet.retweet_count))
             if 1 <= tweet.retweet_count <= 3:
@@ -29,7 +28,7 @@ def retweet(hashtag):
                 now = datetime.now()
                 print(now)
                 print("https://twitter.com/" + str(tweet.id) + "/status/" + str(tweet.id))
-                time.sleep(90)
+                time.sleep(360)
         except tweepy.TweepError as e:
             print(e)
 
